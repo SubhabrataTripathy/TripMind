@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #f8fafc;
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit), sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Optimization Styles for PDF Export */
+@media print {
+  /* Hide all buttons, navigation bars, day tabs, map section, and floating chat */
+  nav,
+  button,
+  footer,
+  .fixed, 
+  header,
+  iframe,
+  main > section:nth-of-type(2), /* Hides Map side panel on the right */
+  #day-tabs,                     /* Hides Day selector tabs */
+  .activity-controls,             /* Hides reorder/edit/delete buttons */
+  .absolute.bottom-16             /* Hides Geolocation button */ {
+    display: none !important;
+  }
+
+  /* Reset layout for full page printing */
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Make the left itinerary column span 100% print width */
+  main > section:first-of-type {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  /* Page breaks optimization for day cards */
+  .bg-white.rounded-2xl.shadow-sm.border {
+    page-break-inside: avoid !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Clean up headers for print */
+  h1 {
+    font-size: 24pt !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Ensure colors and text are high-contrast black on white */
+  .text-slate-500 {
+    color: #475569 !important;
+  }
+}
